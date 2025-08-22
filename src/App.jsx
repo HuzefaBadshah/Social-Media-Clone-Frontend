@@ -1,7 +1,13 @@
+import { BrowserRouter, Routes, Route } from "react-router";
+
 function App() {
 
   return (
-  <p>Hello world</p>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={''} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
