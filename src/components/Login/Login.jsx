@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../store/slice/userSlice";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../../utils/constants";
@@ -8,8 +8,13 @@ import { BASE_URL } from "../../utils/constants";
 const Login = () => {
     const [email, setEmail] = useState('scarlet@xyz.com');
     const [password, setPassword] = useState('Test@12345');
+    const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(user) navigate('/');
+    }, [user]);
 
     async function handleSubmit(e) {
         e.preventDefault();
