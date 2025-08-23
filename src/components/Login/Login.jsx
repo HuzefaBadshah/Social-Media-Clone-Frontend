@@ -1,20 +1,35 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { addUser } from "../../store/slice/userSlice";
+import { useNavigate } from "react-router";
+import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('scarlet@xyz.com');
+    const [password, setPassword] = useState('Test@12345');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        axios.post('http://localhost:888', {
-            emailId: email,
-            password
-        });
-    }
+        try {
+            const res = await axios.post(`${BASE_URL}/login`, {
+                emailId: email,
+                password
+            },
+                { withCredentials: true });
+
+            dispatch(addUser(res.data));
+            return navigate('/');
+        } catch (err) {
+            console.error('Error while login: ', err);
+        }
+    };
+
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content flex-col lg:flex-row-reverse mb-5">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
                     <p className="py-6">
