@@ -6,8 +6,9 @@ import { useNavigate } from "react-router";
 import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
-    const [email, setEmail] = useState('scarlet@xyz.com');
+    const [email, setEmail] = useState('steve@jobs.com');
     const [password, setPassword] = useState('Test@12345');
+    const [error, setError] = useState(null);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Login = () => {
             dispatch(addUser(res.data));
             return navigate('/');
         } catch (err) {
-            console.error('Error while login: ', err);
+            setError(err.response.data);
         }
     };
 
@@ -49,6 +50,7 @@ const Login = () => {
                             <label className="label">Password</label>
                             <input onChange={(e) => setPassword(e.target.value)} type="password" className="input" placeholder="Password" value={password} />
                             <div><a className="link link-hover">Forgot password?</a></div>
+                            {error && <p className="text-red-500">{error}</p>}
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
                     </form>
