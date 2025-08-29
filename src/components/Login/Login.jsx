@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../store/slice/userSlice";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
@@ -54,6 +54,7 @@ const Login = () => {
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
                     </form>
+                    <Link to={'/sign-up'} className="link link-info">Sign Up</Link>
                 </div>
             </div>
         </div>

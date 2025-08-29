@@ -7,6 +7,7 @@ import Signup from "./components/Signup/Signup";
 import Profile from "./components/Profile/Profile";
 import Feed from "./components/Feed/Feed";
 import Connections from "./components/Connections/Connections";
+import FriendRequests from "./components/FriendRequests/FriendRequests";
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="profile" element={<Profile />} />
             <Route path="connections" element={<Connections />} />
+            <Route path="friend-requests" element={<FriendRequests />} />
+            <Route path="sign-up" element={<Signup />} />
           </Route>
         </Routes>
       </BrowserRouter>
